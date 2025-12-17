@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MyWebApp" default="war" basedir=".">
+
+    <!-- ===================== -->
+    <!-- Project Directories   -->
+    <!-- ===================== -->
+    <property name="src.dir" value="src"/>
+    <property name="web.dir" value="WebContent"/>
+    <property name="build.dir" value="build"/>
+    <property name="classes.dir" value="${build.dir}/classes"/>
+    <property name="dist.dir" value="dist"/>
+    <property name="war.name" value="MyWebApp"/>
+
+    <!-- ===================== -->
+    <!-- Tomcat Home           -->
+    <!-- ===================== -->
+    <property name="tomcat.home"
+        value="C:/MySoftwareInstalled/apache-tomcat-9.0.109-windows-x64/apache-tomcat-9.0.109"/>
+
+    <!-- ===================== -->
+    <!-- Classpath             -->
+    <!-- ===================== -->
+    <path id="compile.classpath">
+        <fileset dir="${tomcat.home}/lib">
+            <include name="servlet-api.jar"/>
+        </fileset>
+    </path>
+
+    <!-- ===================== -->
+    <!-- Clean                 -->
+    <!-- ===================== -->
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+        <delete dir="${dist.dir}"/>
+    </target>
+
+    <!-- ===================== -->
+    <!-- Compile Java          -->
+    <!-- ===================== -->
+    <target name="compile">
+        <mkdir dir="${classes.dir}"/>
+
+        <javac srcdir="${src.dir}"
+               destdir="${classes.dir}"
+               includeantruntime="false"
+               classpathref="compile.classpath"/>
+    </target>
+
+    <!-- ===================== -->
+    <!-- Create WAR            -->
+    <!-- ===================== -->
+    <target name="war" depends="clean,compile">
+        <mkdir dir="${dist.dir}"/>
+
+        <war destfile="${dist.dir}/${war.name}.war"
+             webxml="${web.dir}/WEB-INF/web.xml">
+
+            <!-- JSP, HTML, CSS -->
+            <fileset dir="${web.dir}">
+                <exclude name="WEB-INF/web.xml"/>
+            </fileset>
+
+            <!-- Compiled Classes -->
+            <classes dir="${classes.dir}"/>
+
+        </war>
+    </target>
+
+</project>
