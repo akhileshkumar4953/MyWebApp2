@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="MyWebApp" default="war" basedir=".">
+<project name="MyWebApp2" default="war" basedir=".">
 
     <!-- ===================== -->
     <!-- Project Directories   -->
@@ -9,7 +9,7 @@
     <property name="build.dir" value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
     <property name="dist.dir" value="dist"/>
-    <property name="war.name" value="MyWebApp"/>
+    <property name="war.name" value="MyWebApp2"/>
 
     <!-- ===================== -->
     <!-- Tomcat Home           -->
